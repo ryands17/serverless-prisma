@@ -1,0 +1,7 @@
+{
+  "clear": false,
+  "notify": false,
+  "respawn": true,
+  "transpile-only": true,
+  "ignore": ["node_modules"]
+}

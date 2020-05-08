@@ -1,0 +1,40 @@
+# serverless.yml
+
+service: serverless-prisma2
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  profile: ${opt:profile, 'default'}
+
+functions:
+  graphql:
+    handler: src/server.handler
+    events:
+      - http:
+          path: graphql
+          method: post
+          cors: true
+      - http:
+          path: graphql
+          method: get
+          cors: true
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+custom:
+  webpack:
+    webpackConfig: webpack.config.js
+    includeModules: true
+    packager: yarn
+    packagerOptions:
+      scripts:
+        - prisma generate # required for generating the client prisma
+  # required for development as serverless-offline doesn't reload webpack's changes
+  serverless-offline:
+    useChildProcesses: true

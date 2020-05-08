@@ -1,0 +1,9 @@
+node_modules/
+dist/
+
+src/generated/
+migrations/
+
+*.env*
+!.env.example
+.serverless
