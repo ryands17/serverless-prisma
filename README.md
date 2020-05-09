@@ -17,4 +17,4 @@
 
 - `yarn deploy`: Deploy your application via `sls deploy` on AWS Lambda.
 
-**_Note_**: AWS Access and Secret keys must be configured via `aws configure` using the `aws-cli`. The setup uses the `default` profile but you can pass a custom one using `yarn deploy --profile profileName`.
+**_Note_**: AWS Access and Secret keys must be configured via `aws configure` using the [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html). The setup uses the `default` profile but you can pass a custom one using `yarn deploy --profile profileName`.
