@@ -16,7 +16,8 @@
     "clean": "rimraf .webpack && ./nexus_artifacts.sh false",
     "watch:nexus": "tsnd src/schema",
     "db:save": "dotenv -- prisma migrate save --experimental",
-    "db:migrate": "dotenv -- prisma migrate up --experimental"
+    "db:migrate": "dotenv -- prisma migrate up --experimental",
+    "prisma": "prisma"
   },
   "license": "MIT",
   "dependencies": {

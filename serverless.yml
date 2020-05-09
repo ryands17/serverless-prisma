@@ -34,7 +34,8 @@ custom:
     packager: yarn
     packagerOptions:
       scripts:
-        - prisma generate # required for generating the client prisma
+        # required for generating prisma client before deployment
+        - prisma generate
   # required for development as serverless-offline doesn't reload webpack's changes
   serverless-offline:
     useChildProcesses: true

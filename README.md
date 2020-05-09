@@ -10,8 +10,13 @@
 
 - node > 10
 - yarn (recommended) or npm
+- Copy/Rename the `.env.example` to `.env` and replace the `DATABASE_URL` with your own credentials.
 
 ### Commands
+
+- `yarn db:save`: Run this command at the start of the project to generate the migrations for your Prisma model located in `prisma/schema.prisma`
+
+- `yarn db:migrate`: Run this command to add your migrations to the database.
 
 - `yarn dev`: Runs the server in development mode via the `sls offline` command and simulates the entire API on [http://localhost:3000/dev/graphql](http://localhost:3000/dev/graphql) by default.
 
