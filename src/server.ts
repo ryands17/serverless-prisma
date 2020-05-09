@@ -4,7 +4,7 @@ import { createContext } from './context'
 
 const server = new ApolloServer({
   schema,
-  context: ({ event, _context }) => ({
+  context: ({ event }) => ({
     headers: event.headers,
     ...createContext(),
   }),
