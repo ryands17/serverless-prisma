@@ -7,13 +7,13 @@
   "private": true,
   "scripts": {
     "dev": "run-p generate:prisma watch:nexus offline",
-    "predeploy": "run-s clean generate:nexus",
+    "predeploy": "run-s clean generate:nexus && ./nexus_artifacts.sh false",
     "deploy": "sls deploy",
     "postdeploy": "./nexus_artifacts.sh true",
     "offline": "sls offline",
     "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --transpile-only src/schema",
-    "clean": "rimraf .webpack && ./nexus_artifacts.sh false",
+    "clean": "rimraf .webpack",
     "watch:nexus": "tsnd src/schema",
     "db:save": "dotenv -- prisma migrate save --experimental",
     "db:migrate": "dotenv -- prisma migrate up --experimental",
@@ -22,8 +22,8 @@
   "license": "MIT",
   "dependencies": {
     "@nexus/schema": "0.13.1",
-    "@prisma/cli": "2.0.0-beta.4",
-    "@prisma/client": "2.0.0-beta.4",
+    "@prisma/cli": "2.0.0-beta.5",
+    "@prisma/client": "2.0.0-beta.5",
     "@types/node-fetch": "2.5.7",
     "apollo-server-lambda": "^2.12.0",
     "graphql": "15.0.0",
@@ -56,8 +56,7 @@
   },
   "prettier": {
     "singleQuote": true,
-    "semi": false,
-    "trailingComma": "all"
+    "semi": false
   },
   "engines": {
     "node": ">=10.0.0"
