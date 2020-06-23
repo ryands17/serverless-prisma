@@ -1,4 +1,4 @@
-# Serverless Prisma 2
+# Serverless Prisma
 
 ### A GraphQL API created using the [Serverless](https://serverless.com) framework using the following tools
 
@@ -8,9 +8,8 @@
 
 ### Prerequisites
 
-- node > 10
+- node >= 10
 - yarn (recommended) or npm
-- Copy/Rename the `.env.example` to `.env` and replace the `DATABASE_URL` with your own credentials.
 
 ### Commands
 
@@ -20,6 +19,9 @@
 
 - `yarn dev`: Runs the server in development mode via the `sls offline` command and simulates the entire API on [http://localhost:3000/dev/graphql](http://localhost:3000/dev/graphql) by default.
 
+  - Copy/Rename the `.env.example` to `.env` and replace the `DATABASE_URL` with the database URL.
+
 - `yarn deploy`: Deploy your application via `sls deploy` on AWS Lambda.
+  - Copy/Rename the `.env.example` to `.env.production` and replace the `DATABASE_URL` with the database URL and set `NODE_ENV` to **production** (this is required for Nexus to not generate artifacts).
 
 **_Note_**: AWS Access and Secret keys must be configured via `aws configure` using the [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html). The setup uses the `default` profile but you can pass a custom one using `yarn deploy --profile profileName`.
