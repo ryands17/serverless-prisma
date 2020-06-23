@@ -20,13 +20,7 @@ const Query = queryType({
 
 export const schema = makeSchema({
   types: [User, Query],
-  plugins: [
-    nexusPrismaPlugin({
-      // should be `true` during development (yarn dev)
-      // and set to false before deployment (yarn deploy)
-      shouldGenerateArtifacts: true,
-    }),
-  ],
+  plugins: [nexusPrismaPlugin()],
   outputs: {
     schema: path.join(__dirname, 'generated', 'schema.graphql'),
     typegen: path.join(__dirname, 'generated', 'nexus.ts'),

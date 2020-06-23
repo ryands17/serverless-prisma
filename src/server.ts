@@ -12,6 +12,7 @@ const server = new ApolloServer({
     endpoint: '/dev/graphql',
   },
   tracing: true,
+  introspection: true,
 })
 
 export const handler = server.createHandler()

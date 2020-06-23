@@ -7,9 +7,8 @@
   "private": true,
   "scripts": {
     "dev": "run-p generate:prisma watch:nexus offline",
-    "predeploy": "run-s clean generate:nexus && ./nexus_artifacts.sh false",
-    "deploy": "sls deploy",
-    "postdeploy": "./nexus_artifacts.sh true",
+    "predeploy": "run-s clean generate:nexus",
+    "deploy": "cross-env NODE_ENV=production sls deploy",
     "offline": "sls offline",
     "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --transpile-only src/schema",
@@ -17,7 +16,7 @@
     "watch:nexus": "tsnd src/schema",
     "db:save": "dotenv -- prisma migrate save --experimental",
     "db:migrate": "dotenv -- prisma migrate up --experimental",
-    "prisma": "prisma"
+    "prisma": "dotenv -- prisma"
   },
   "license": "MIT",
   "dependencies": {
@@ -34,6 +33,7 @@
     "@typescript-eslint/parser": "^2.31.0",
     "apollo": "^2.27.3",
     "copy-webpack-plugin": "^5.1.1",
+    "cross-env": "^7.0.2",
     "dotenv-cli": "^3.1.0",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
