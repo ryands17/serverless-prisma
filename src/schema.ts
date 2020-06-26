@@ -1,6 +1,12 @@
 import * as path from 'path'
 import { nexusPrismaPlugin } from 'nexus-prisma'
 import { makeSchema, objectType, queryType } from '@nexus/schema'
+import { Context } from './context'
+
+const nexusPrisma = nexusPrismaPlugin({
+  experimentalCRUD: true,
+  prismaClient: (ctx: Context) => ctx.prisma,
+})
 
 const User = objectType({
   name: 'User',
@@ -20,7 +26,7 @@ const Query = queryType({
 
 export const schema = makeSchema({
   types: [User, Query],
-  plugins: [nexusPrismaPlugin()],
+  plugins: [nexusPrisma],
   outputs: {
     schema: path.join(__dirname, 'generated', 'schema.graphql'),
     typegen: path.join(__dirname, 'generated', 'nexus.ts'),
