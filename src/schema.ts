@@ -1,6 +1,6 @@
 import * as path from 'path'
 import { nexusPrismaPlugin } from 'nexus-prisma'
-import { makeSchema, objectType, queryType } from '@nexus/schema'
+import { makeSchema, objectType, queryType, mutationType } from '@nexus/schema'
 import { Context } from './context'
 
 const nexusPrisma = nexusPrismaPlugin({
@@ -24,8 +24,14 @@ const Query = queryType({
   },
 })
 
+const Mutation = mutationType({
+  definition(t) {
+    t.crud.createOneUser()
+  },
+})
+
 export const schema = makeSchema({
-  types: [User, Query],
+  types: [User, Query, Mutation],
   plugins: [nexusPrisma],
   outputs: {
     schema: path.join(__dirname, 'generated', 'schema.graphql'),
