@@ -6,8 +6,8 @@ provider:
   name: aws
   runtime: nodejs12.x
   stage: ${opt:stage, 'dev'}
-  region: ${opt:region, 'us-east-1'}
-  profile: ${opt:profile, 'prisma_demo'}
+  region: ${opt:region, 'eu-west-1'}
+  profile: ${opt:profile, 'serverless-admin'}
 
 functions:
   graphql:
