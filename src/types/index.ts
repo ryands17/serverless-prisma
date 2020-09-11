@@ -1,0 +1,7 @@
+export * from './AuthPayload'
+export * from './Mutation'
+//export * from './Post'
+export * from './Price'
+export * from './Material'
+export * from './Query'
+export * from './User'

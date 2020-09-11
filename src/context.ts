@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { request } from 'http'
 
 const prisma = new PrismaClient({
   log: ['query'],
@@ -6,8 +7,9 @@ const prisma = new PrismaClient({
 
 export interface Context {
   prisma: PrismaClient
+  request: any
 }
 
 export function createContext(): Context {
-  return { prisma }
+  return { prisma, request }
 }
