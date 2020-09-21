@@ -1,4 +1,4 @@
-import { intArg, queryType, stringArg } from '@nexus/schema'
+import { queryType, stringArg } from '@nexus/schema'
 //import { getUserId } from '../utils'
 
 export const Query = queryType({
@@ -83,19 +83,6 @@ export const Query = queryType({
             name: {
               contains: searchString,
             },
-          },
-        })
-      },
-    })
-
-    t.field('material', {
-      type: 'Material',
-      nullable: true,
-      args: { id: intArg() },
-      resolve: (parent, { id }, ctx) => {
-        return ctx.prisma.material.findOne({
-          where: {
-            id: Number(id),
           },
         })
       },

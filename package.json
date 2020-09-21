@@ -1,12 +1,13 @@
 {
-  "name": "serverless-prisma2",
+  "name": "stellar-foundries-prisma",
   "version": "1.0.0",
   "author": {
-    "name": "Ryan Dsouza"
+    "name": "Fraser Jeffrey"
   },
   "private": true,
   "scripts": {
     "dev": "run-p generate:prisma watch:nexus offline",
+    "seed": "ts-node ./prisma/seed.ts",
     "predeploy": "run-s generate:nexus",
     "deploy": "cross-env NODE_ENV=production sls deploy",
     "offline": "sls offline",

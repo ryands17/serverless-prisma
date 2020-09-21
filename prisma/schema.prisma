@@ -20,9 +20,11 @@ model Material {
 
   id       Int     @default(autoincrement()) @id
   name     String  @unique
-  //prices will go here
   supplier User[]
   price    Price[]
+  //material properties useful for price calculation
+  density  Float
+
 }
 
 //Price model

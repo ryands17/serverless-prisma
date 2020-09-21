@@ -1,4 +1,4 @@
-import { intArg, mutationType, stringArg } from '@nexus/schema'
+import { floatArg, intArg, mutationType, stringArg } from '@nexus/schema'
 import { compare, hash } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 import { APP_SECRET, getUserId } from '../utils'
@@ -78,18 +78,20 @@ export const Mutation = mutationType({
     t.crud.createOnePrice()
     //
 
-    t.field('createDraftMaterial', {
+    t.field('createMaterial', {
       type: 'Material',
       args: {
         name: stringArg(),
+        density: floatArg(),
       },
-      resolve: (parent, { name }, ctx) => {
+      resolve: (parent, { name, density }, ctx) => {
         const userId = getUserId(ctx)
         if (!userId) throw new Error('Could not authenticate user.')
         return ctx.prisma.material.create({
           data: {
             name,
             supplier: { connect: { id: Number(userId) } },
+            density,
           },
         })
       },

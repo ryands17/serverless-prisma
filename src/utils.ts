@@ -7,13 +7,13 @@ interface Token {
   userId: string
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function getUserId(context: Context) {
   const Authorization = context.request.get('Authorization')
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '')
     const verifiedToken = verify(token, APP_SECRET) as Token
     return verifiedToken && verifiedToken.userId
-  } else {
-    return null
   }
+  return false
 }

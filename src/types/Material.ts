@@ -7,5 +7,6 @@ export const Material = objectType({
     t.model.name()
     t.model.supplier()
     t.model.price()
+    t.model.density()
   },
 })
