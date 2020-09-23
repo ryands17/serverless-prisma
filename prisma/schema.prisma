@@ -1,5 +1,5 @@
 datasource pg {
-  provider = "postgresql"
+  provider = ["postgresql", "sqlite"]
   url      = env("DATABASE_URL")
 }
 

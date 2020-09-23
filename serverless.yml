@@ -11,7 +11,7 @@ provider:
 
 functions:
   graphql:
-    handler: src/server.handler
+    handler: dist/server.handler
     events:
       - http:
           path: graphql
@@ -23,19 +23,16 @@ functions:
           cors: true
 
 plugins:
-  - serverless-webpack
   - serverless-offline
   - serverless-dotenv-plugin
 
+package:
+  exclude:
+    - 'node_modules/@prisma/cli/*-darwin'
+    - 'node_modules/.prisma/client/*-darwin'
+    - 'src/**/*'
+
 custom:
-  webpack:
-    webpackConfig: webpack.config.js
-    includeModules: true
-    packager: yarn
-    packagerOptions:
-      scripts:
-        # required for generating prisma client before deployment
-        - prisma generate
   # required for development as serverless-offline doesn't reload webpack's changes
   serverless-offline:
     useChildProcesses: true
