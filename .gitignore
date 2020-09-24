@@ -8,3 +8,4 @@ migrations/
 *.env*
 !.env.example
 .serverless
+.DS_Store
