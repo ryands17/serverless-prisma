@@ -1,5 +1,3 @@
-# serverless.yml
-
 service: serverless-prisma2
 
 provider:
@@ -27,12 +25,13 @@ plugins:
   - serverless-dotenv-plugin
 
 # this exclude is specific to your system if your not on the same environment as Lambda
-# this is added to decrease the output size to prevent deployment issues
+# this is added to decrease the output size to prevent size related issues
 package:
   exclude:
     - 'node_modules/@prisma/cli/*-darwin'
     - 'node_modules/@prisma/cli/query-engine-*'
     - 'node_modules/.prisma/client/*-darwin'
+    - 'node_modules/@prisma/engines/**'
     - 'src/**/*'
     - '*.env'
     - '*.eslint'
