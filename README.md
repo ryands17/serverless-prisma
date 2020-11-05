@@ -8,7 +8,7 @@
 
 ### Prerequisites
 
-- node >= 10
+- node >= 12
 - yarn (recommended) or npm
 
 ### Commands
@@ -24,4 +24,4 @@
 - `yarn deploy`: Deploy your application via `sls deploy` on AWS Lambda.
   - Copy/Rename the `.env.example` to `.env.production` and replace the `DATABASE_URL` with the database URL and set `NODE_ENV` to **production** (this is required for Nexus to not generate artifacts).
 
-**_Note_**: AWS Access and Secret keys must be configured via `aws configure` using the [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html). The setup uses the `default` profile but you can pass a custom one using `yarn deploy --profile profileName`.
+**_Note_**: AWS Access and Secret keys must be configured via `aws configure` using the [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html). The setup uses the `prisma_demo` profile but you can pass a custom one using `yarn deploy --profile profileName`.
