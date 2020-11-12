@@ -11,7 +11,7 @@
     "offline": "dotenv -- sls offline",
     "db:save": "yarn prisma migrate save --experimental",
     "db:migrate": "yarn prisma migrate up --experimental",
-    "seed": "dotenv -- node prisma/seed.ts",
+    "seed": "dotenv -- ts-node prisma/seed.ts",
     "watch:nexus": "tsnd --transpile-only ./src/schema",
     "watch:ts": "tsc --watch",
     "generate:prisma": "yarn prisma generate",
