@@ -39,7 +39,7 @@ export const schema = makeSchema({
     typegen: join(__dirname, 'generated', 'nexus.ts'),
   },
   contextType: {
-    module: join(__dirname, 'types.ts'),
+    module: join(__dirname, 'context.ts'),
     export: 'Context',
     alias: 'ctx',
   },
