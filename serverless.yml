@@ -39,6 +39,5 @@ package:
     - '*.eslint'
 
 custom:
-  # required for development as serverless-offline doesn't reload webpack's changes
   serverless-offline:
     useChildProcesses: true

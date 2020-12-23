@@ -1,6 +1,6 @@
-import * as path from 'path'
+import { join } from 'path'
 import { nexusSchemaPrisma } from 'nexus-plugin-prisma/schema'
-import { makeSchema, objectType, queryType, mutationType } from '@nexus/schema'
+import { makeSchema, objectType, queryType, mutationType } from 'nexus'
 import { Context } from './context'
 
 const nexusPrisma = nexusSchemaPrisma({
@@ -35,20 +35,21 @@ export const schema = makeSchema({
   types: [User, Query, Mutation],
   plugins: [nexusPrisma],
   outputs: {
-    schema: path.join(__dirname, 'generated', 'schema.graphql'),
-    typegen: path.join(__dirname, 'generated', 'nexus.ts'),
+    schema: join(__dirname, 'generated', 'schema.graphql'),
+    typegen: join(__dirname, 'generated', 'nexus.ts'),
   },
-  typegenAutoConfig: {
-    contextType: 'Context.Context',
-    sources: [
+  contextType: {
+    module: join(__dirname, 'types.ts'),
+    export: 'Context',
+    alias: 'ctx',
+  },
+  sourceTypes: {
+    modules: [
       {
-        source: '@prisma/client',
+        module: require.resolve('.prisma/client/index.d.ts'),
         alias: 'prisma',
-      },
-      {
-        source: require.resolve('./context'),
-        alias: 'Context',
       },
     ],
   },
+  prettierConfig: join(process.cwd(), 'package.json'),
 })
