@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   stage: ${opt:stage, 'dev'}
-  region: ${opt:region, 'us-east-1'}
+  region: ${opt:region, 'us-east-2'}
   profile: ${opt:profile, 'prisma_demo'}
   apiGateway:
     shouldStartNameWithService: true
