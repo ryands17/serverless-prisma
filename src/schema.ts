@@ -1,39 +1,36 @@
 import { join } from 'path'
-import { nexusSchemaPrisma } from 'nexus-plugin-prisma/schema'
-import { makeSchema, objectType, queryType, mutationType } from 'nexus'
-import { Context } from './context'
-
-const nexusPrisma = nexusSchemaPrisma({
-  experimentalCRUD: true,
-  paginationStrategy: 'prisma',
-  prismaClient: (ctx: Context) => ctx.prisma,
-})
+import { makeSchema, objectType, queryType, intArg, nonNull } from 'nexus'
 
 const User = objectType({
   name: 'User',
   definition(t) {
-    t.model.id()
-    t.model.email()
-    t.model.name()
+    t.nonNull.int('id')
+    t.nonNull.string('email')
+    t.string('name')
   },
 })
 
 const Query = queryType({
   definition(t) {
-    t.crud.users()
-    t.crud.user()
-  },
-})
+    t.list.field('users', {
+      type: 'User',
+      resolve(_root, _args, ctx) {
+        return ctx.prisma.user.findMany()
+      },
+    })
 
-const Mutation = mutationType({
-  definition(t) {
-    t.crud.createOneUser()
+    t.field('user', {
+      type: 'User',
+      args: { id: nonNull(intArg()) },
+      resolve(_parent, args, ctx) {
+        return ctx.prisma.user.findUnique({ where: { id: args.id } })
+      },
+    })
   },
 })
 
 export const schema = makeSchema({
-  types: [User, Query, Mutation],
-  plugins: [nexusPrisma],
+  types: [User, Query],
   outputs: {
     schema: join(__dirname, 'generated', 'schema.graphql'),
     typegen: join(__dirname, 'generated', 'nexus.ts'),

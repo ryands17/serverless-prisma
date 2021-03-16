@@ -1,3 +1,6 @@
+import { config } from 'dotenv'
+config()
+
 import { ApolloServer } from 'apollo-server-lambda'
 import { schema } from './schema'
 import { createContext } from './context'
