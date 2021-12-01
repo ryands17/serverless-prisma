@@ -29,10 +29,8 @@ plugins:
 # this is added to decrease the output size to prevent size related issues
 package:
   exclude:
-    - 'node_modules/@prisma/cli/*-darwin'
-    - 'node_modules/@prisma/cli/query-engine-*'
-    - 'node_modules/.prisma/client/*-darwin'
-    - 'node_modules/@prisma/engines/**'
+    - '!node_modules/.prisma/client/libquery_engine-*'
+    - 'node_modules/.prisma/client/libquery_engine-rhel-*'
     - 'src/**/*'
     - '*.eslint'
 
